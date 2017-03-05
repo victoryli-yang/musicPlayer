@@ -1,0 +1,93 @@
+html {
+    font-size: 20px;
+    color: rgb(245, 241, 241)
+}
+
+.content {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 18rem;
+    height: 30rem;
+}
+
+/*标题*/
+header {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 3rem;
+    padding: 5px;
+    overflow: hidden;
+    border-bottom: 1px rgba(165, 163, 163, 0.69) solid;
+}
+
+#id-div-name {
+
+}
+
+/*内容*/
+.music-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 15rem;
+    margin: 1rem auto;
+}
+
+.circular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 10rem;
+    height: 10rem;
+    border: 0.05rem black solid;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.circular img {
+    width: 10rem;
+    height: auto;
+}
+
+/*控制*/
+.music-control {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 0rem 1rem 0rem 1rem;
+    margin-bottom:2rem;
+    width: auto;
+    height: 2rem;
+}
+.music-control img {
+    width: 10%;
+}
+
+/*背景*/
+.background {
+    display: flex;
+    position: absolute;
+    top: 0rem;
+    justify-content: center;
+    align-items: center;
+
+    width: 18rem;
+    height: 30rem;
+    overflow: hidden;
+    filter: blur(15px);
+    z-index: -1;
+}
+.background img {
+    width: 125%;
+    height: auto;
+}
