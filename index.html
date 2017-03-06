@@ -6,10 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <!-- jq.js -->
         <script src="./js/jquery.min.js"></script>
+        <script src="./js/holdAll.js"></script>
         <link rel="stylesheet" href="./style.css">
         <title>music play</title>
     </head>
     <body>
+        <audio id='id-audio-player' src="./mp3/1.mp3"></audio >
         <div class="music-border">
             <!-- 主界面 -->
             <div class="content">
@@ -20,24 +22,44 @@
                 </header>
                 <!-- 主体 -->
                 <div class="music-content">
-                <div class="circular">
-                    <img src="2.jpg">
+                <div class="music-cover">
+                    <img src="./img/play_disc.png">
+                    <div class="circular">
+                        <img src="2.jpg">
+                    </div>
                 </div>
 
                 </div>
                 <!-- 控制 -->
-                <footer class="music-control">
-                    <img src="./img/repeat.png">
-                    <img src="./img/last.png">
-                    <img src="./img/play.png">
-                    <img src="./img/next.png">
-                    <img src="./img/category.png">
+                <footer class="music-loading">
+                    <div class="footer-timelist">
+                        <span class="timelist-start">00:00</span>
+                        <div class="timelist">
+                            <div class="timelist-bg"></div>
+                                <input class="timelist-slider" type="range" step=0.1 type="range" max=100 min=0 value=0>
+                            <div class="timelist-ing">
+                                <img id="id-img-process" src="img/process.png" alt="" />
+                            </div>
+                        </div>
+                        <span class="timelist-end">00:00</span>
+                    </div>
+                    <div class="music-control">
+                        <img id='id-img-repeat' src="./img/repeat.png">
+                        <img id='id-img-last' src="./img/last.png">
+                        <div class="control-playOrPause">
+                            <img id='id-img-play' class='music-play' src="./img/play.png">
+                            <img id='id-img-pause' class='music-pause no-showed' src="./img/pause.png">
+                        </div>
+                        <img id='id-img-next' src="./img/next.png">
+                        <img id='id-img-category' src="./img/category.png">
+                    </div>
                 </footer>
-            </div>
-            <!-- 背景 -->
-            <div class="background">
-                <img src="2.jpg">
+                <!-- 背景 -->
+                <div class="background">
+                    <img src="2.jpg">
+                </div>
             </div>
         </div>
+        <script src="./js/musicMain.js"></script>
     </body>
 </html>
