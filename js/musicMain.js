@@ -22,13 +22,83 @@ const labelFromTime = function(time) {
     return t
 }
 
+// 根据 "-" 切割字符串
+const sliceName = function(name) {
+    for (var i = 0; i < name.length; i++) {
+        if (name[i] == '-') {
+            return i
+        }
+    }
+}
 // 歌单
-var songs = ["./mp3/1.mp3",
-            "./mp3/2.mp3",
-            "./mp3/3.mp3",
-            ]
+var songs = [
+    "./mp3/1.mp3",
+    "./mp3/2.mp3",
+    "./mp3/3.mp3",
+    ]
+var musiceLists = [
+    '平凡之路-朴树',
+    '告白气球-周二珂',
+    '成都-赵雷',
+    ]
+var backgrounds = [
+    "backgrounds/pfvl.jpg",
+    "backgrounds/gbqq.jpg",
+    "backgrounds/cd.jpg"
+]
 
-// 切换
+// 切换作者 背景
+const changeAuthorNext = function() {
+    let song = $("#id-audio-player").attr("src")
+    for (var i = 0; i < songs.length; i++) {
+        if (songs[i] == song) {
+            let active = i
+            let now = (active + 3) % songs.length
+            // log('n', now)
+            let musiceList = musiceLists[now]
+            // log('m[i]', musiceList)
+            let s = sliceName(musiceList)
+            let name = musiceList.slice(0, s)
+            let author = musiceList.slice(s + 1)
+            // log('n', name)
+            // log('a', author)
+            $('#id-div-name').text(name)
+            $('#id-div-author').text(author)
+
+            let background = backgrounds[now]
+            $(".circular").find('img').attr("src", background)
+            $(".background").find('img').attr("src", background)
+            // log('1', background)
+            break
+        }
+    }
+}
+const changeAuthorLast = function() {
+    let song = $("#id-audio-player").attr("src")
+    for (var i = 0; i < songs.length; i++) {
+        if (songs[i] == song) {
+            let active = i
+            let now = (active + 3) % songs.length
+            // log('n', now)
+            let musiceList = musiceLists[now]
+            // log('m[i]', musiceList)
+            let s = sliceName(musiceList)
+            let name = musiceList.slice(0, s)
+            let author = musiceList.slice(5)
+            // log('n', name)
+            // log('a', author)
+            $('#id-div-name').text(name)
+            $('#id-div-author').text(author)
+
+            let background = backgrounds[now]
+            $(".circular").find('img').attr("src", background)
+            $(".background").find('img').attr("src", background)
+            // log('1', background)
+            break
+        }
+    }
+}
+// 切换上下首
 const playNext = function() {
     var audio = e('#id-audio-player')
     var song = audio.src.slice(-5)
@@ -38,10 +108,29 @@ const playNext = function() {
         if (songs[i].includes(song)) {
             var active = i
             var next = (active + 1) % songs.length
-            log('a', songs[next])
+            // log('a', songs[next])
             audio.src = songs[next]
             var id = event.target.id
             playOrPause(id)
+            changeAuthorNext()
+            break
+        }
+    }
+}
+const playLast = function() {
+    var audio = e('#id-audio-player')
+    var song = audio.src.slice(-5)
+    // log('song', song)
+    for (var i = 0; i < songs.length; i++) {
+        // log('song[i]', songs[i])
+        if (songs[i].includes(song)) {
+            var active = i
+            var last = (active + 2) % songs.length
+            // log('a', songs[last])
+            audio.src = songs[last]
+            var id = event.target.id
+            playOrPause(id)
+            changeAuthorLast()
             break
         }
     }
@@ -83,29 +172,13 @@ const bindEventPlayOrPause = function() {
 const bindEventLast = function() {
     var btnLast = e('#id-img-last')
     bindEvent(btnLast, 'click', function(evnet) {
-        log('ready last')
-        var audio = e('#id-audio-player')
-        var song = audio.src.slice(-5)
-        // log('song', song)
-        for (var i = 0; i < songs.length; i++) {
-            // log('song[i]', songs[i])
-            if (songs[i].includes(song)) {
-                var active = i
-                var last = (active + 2) % songs.length
-                log('a', songs[last])
-                audio.src = songs[last]
-                var id = event.target.id
-                playOrPause(id)
-                break
-            }
-        }
+        playLast()
     })
 }
 
 const bindEventNext = function() {
     var btnLast = e('#id-img-next')
     bindEvent(btnLast, 'click', function(evnet) {
-        log('ready next')
         playNext()
     })
 }
