@@ -11,9 +11,12 @@
 
 ![](mplayer.png)
 
-### 动态 gif
+### 动态 gif  
+
 
 gif有失真
+
+
 ![](player.gif)
 =======
 
